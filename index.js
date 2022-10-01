@@ -1,11 +1,70 @@
 "use strict";
 
 const Client = require("./lib/Client");
+const Constants = require("./lib/Constants");
 
 function Eris(token, options) {
     return new Client(token, options);
 }
 
+Eris.embedColors = Constants.embedColors;
+Eris.embed = class Embed {
+    constructor(json = {description: "Test"}) {
+        this.json = json;
+    }
+
+    addDescription(value = "Test") {
+        this.json.description = value;
+        return this;
+    }
+
+    addFooter(name, description, json = {}) {
+        this.json.footer = {
+            name,
+            description,
+            ...json
+        };
+        return this;
+    }
+
+    addImage(url = "https://google.com") {
+        this.json.image = url;
+        return this;
+    }
+
+    addOther(key, data) {
+        this.json[key] = data;
+        return this;
+    }
+
+    addThumbnail(url, json = {}) {
+        this.json.thumbnail = {
+            url,
+            ...json
+        };
+    }
+
+    addTitle(value = "Test") {
+        this.json.title = value;
+        return this;
+    }
+
+    addVideo(url, json = {}) {
+        this.json.video = {
+            url,
+            ...json
+        };
+        return this;
+    }
+
+    setColor(color) {
+        this.json.color = this.embedColors[color] ? this.embedColors[color] : color;
+    }
+
+    toDiscordJson() {
+        return this.json;
+    }
+};
 Eris.AutocompleteInteraction = require("./lib/structures/AutocompleteInteraction");
 Eris.Base = require("./lib/structures/Base");
 Eris.Bucket = require("./lib/util/Bucket");

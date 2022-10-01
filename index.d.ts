@@ -3019,6 +3019,20 @@ declare namespace Eris {
     editParent(content: InteractionContentEdit, file?: FileContent | FileContent[]): Promise<void>;
     getOriginalMessage(): Promise<Message>
   }
+
+  export class embed {
+    constructor(json?: "https://discord.com/developers/docs/resources/channel#embed-object-embed-structure")
+    addTitle(value: string): embed
+    addDescription(value: string): embed
+    setColor(color: string | Number): embed
+    addImage(url: string): embed
+    addFooter(name: string, description: string, json?: any): embed
+    addThumbnail(url: string, json?: any): embed
+    addVideo(url: string, json?: any): embed
+    addOther(key: string, data: any): embed
+    toDiscordJson(): any
+  }
+
   export class AutocompleteInteraction<T extends PossiblyUncachedTextable = TextableChannel> extends Interaction {
     appPermissions?: Permission;
     channel: T;
