@@ -58,7 +58,8 @@ Eris.embed = class Embed {
     }
 
     setColor(color) {
-        this.json.color = this.embedColors[color] ? this.embedColors[color] : color;
+        this.json.color = Eris.embedColors[color] ? Eris.embedColors[color] : color;
+        return this;
     }
 
     toDiscordJson() {
