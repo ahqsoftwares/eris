@@ -586,14 +586,17 @@ declare namespace Eris {
   interface OldGuild {
     afkChannelID: string | null;
     afkTimeout: number;
+    autoRemoved: boolean | null;
     banner: string | null;
     defaultNotifications: DefaultNotifications;
     description: string | null;
     discoverySplash: string | null;
+    emojiCount: number | null;
     emojis: Omit<Emoji, "user" | "icon">[];
     explicitContentFilter: ExplicitContentFilter;
     features: GuildFeatures[];
     icon: string | null;
+    keywords: string[] | null;
     large: boolean;
     maxMembers?: number;
     maxVideoChannelUsers?: number;
@@ -603,9 +606,12 @@ declare namespace Eris {
     nsfw: boolean;
     nsfwLevel: NSFWLevel;
     ownerID: string;
+    premiumProgressBarEnabled: boolean;
     preferredLocale?: string;
     premiumSubscriptionCount?: number;
     premiumTier: PremiumTier;
+    primaryCategory?: DiscoveryCategory;
+    primaryCategoryID: Number | null;
     publicUpdatesChannelID: string | null;
     rulesChannelID: string | null;
     splash: string | null;
@@ -614,6 +620,7 @@ declare namespace Eris {
     systemChannelID: string | null;
     vanityURL: string | null;
     verificationLevel: VerificationLevel;
+    welcomeScreen?: WelcomeScreen;
   }
   interface OldGuildChannel {
     bitrate?: number;
@@ -3358,6 +3365,7 @@ declare namespace Eris {
     connectAttempts: number;
     connecting: boolean;
     connectTimeout: NodeJS.Timeout | null;
+    resumeURL: string | null;
     discordServerTrace?: string[];
     getAllUsersCount: { [guildID: string]: boolean };
     getAllUsersLength: number;
